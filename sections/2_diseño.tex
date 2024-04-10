@@ -1,0 +1,101 @@
+\chapter{Diseño de pruebas}
+Según la descripción del sistema que otorga el enunciado, se identifican los siguientes conjuntos de entradas
+que definen las clases de equivalencia. Para definir las clases de equivalencia se utiliza una sintaxis
+matemática, donde se define el conjunto de valores que pertenecen a las mismas.
+
+A continuación se definen las clases de equivalencia para las entradas y salidas del sistema:
+
+\section{Clases de equivalencia: entrada}
+\subsection{Base imponible ($BI$)}
+La base imponible se toma como la suma de ingresos de todos los empleadores
+(en caso de tener más de uno) y se define por tramos según el enunciado.
+A esta suma ``total'' se le denomina $BI$.
+
+Puesto que puede haber un número (teóricamente) \textit{infinito} de pagadores,
+se acumulan todos los ingresos de los empleadores \textit{secundarios} (es decir, que no
+son los principales) en una variable $BI_{o}$, mientras que el principal se define como $BI_{p}$.
+
+\begin{enumerate}
+	\item $BI \in [0, 9000)$€
+	\item $BI \in [9000, 12450)$€
+	\item $BI \in [12450, 20200)$€
+	\item $BI \in [20200, 35200)$€
+	\item $BI \in [35200, 60000)$€
+	\item $BI \in [60000, 300000)$€
+	\item $BI \in [300000, \infty)$€
+	\item $BI \notin \mathbb{R}, BI < 0$€ (\textcolor{red}{Inválido})
+\end{enumerate}
+
+\subsection{Retenciones ($R$)}
+Donde $I$ es el cálculo de impuestos a pagar.
+
+\begin{enumerate}
+	\item $R \in [0, I)$€
+	\item $R \in (I, \infty)$€
+	\item $R = I$€
+	\item $R \notin \mathbb{R}, R < 0$€ (\textcolor{red}{Inválido})
+\end{enumerate}
+
+\subsection{Número de empleadores ($n_{E}$)}
+\begin{enumerate}
+	\item $n_{E} = 0$ (\textcolor{orange}{no puede tener $BI$})
+	\item $n_{E} = 1$
+	\item $n_{E} \in [2, \infty)$
+	\item $n_{E} \notin \mathbb{N}, n_{E} < 1$ (\textcolor{red}{Inválido})
+\end{enumerate}
+
+\subsection{Préstamos hipotecarios ($P_{H}$)}
+En este caso, se define $P_{H}$ como la cantidad de dinero que se ha pagado
+en concepto de préstamos hipotecarios en viviendas habituales anteriores a 2013.
+
+$60266$€ es el valor por encima del cual se dejaría de aplicar la deducción por vivienda habitual,
+que resulta del siguiente cálculo: $$\frac{9040}{0.15} = 60266.66666\dots$$
+
+\begin{enumerate}
+	\item $P_{H} = 0$€
+	\item $P_{H} \in (0, 60266]$€
+	\item $P_{H} \in (60266, \infty)$€
+	\item $P_{H} \notin \mathbb{R}, P_{H} < 0$€ (\textcolor{red}{Inválido})
+\end{enumerate}
+
+El valor máximo de la deducción es 9040€, lo que no significa que por encima de dicho valor no se aplique
+la deducción, sino que el valor de la deducción no aumenta por encima de dicho valor.
+
+\newpage{}
+\section{Clases de equivalencia: salida}
+\subsection{Obligatoriedad de la declaración}
+\begin{itemize}
+	\item Obligatorio
+	\item No obligatorio
+\end{itemize}
+
+\subsection{Gravamen máximo}
+Puesto que el cálculo del gravamen se realiza por tramos, se definen los siguientes
+valores posibles para el gravamen máximo.
+
+\begin{itemize}
+	\item 0\%
+	\item 19\%
+	\item 24\%
+	\item 30\%
+	\item 37\%
+	\item 45\%
+	\item 47\%
+\end{itemize}
+
+\subsection{Cálculo (resultado)}
+El cálculo de la declaración se realiza en base a las retenciones y la base imponible por \textit{tramos}
+tal y como define el enunciado, por lo que la salida del cálculo final dependerá de los valores
+de las entradas y no se puede definir una clase de equivalencia para la salida, al exisitir un número
+infinito de posibles combinaciones de valores de entrada.
+
+Sin embargo, se definen las tres siguientes opciones, englobando en ellas todos los posibles valores numéricos:
+\begin{itemize}
+	\item A pagar
+	\item A devolver
+	\item Sin cambios
+\end{itemize}
+
+Esta salida tiene especial conexión con la entrada $R$, ya que el cálculo de la declaración
+depende directamente de la cantidad de retenciones que se han realizado. Al cálculo final de esta salida
+deberían aplicarse las deducciones correspondientes (en este enunciado solo se considera $P_{H}$).

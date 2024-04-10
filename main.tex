@@ -23,9 +23,12 @@
 \usepackage{hypcap}
 \usepackage{caption}
 \usepackage{fancyvrb}
+\usepackage{amsfonts}
+\usepackage{tabularx}
+\usepackage{multirow}
 
 \usepackage{hyperref} % Paquete para que las referencias funcionen, y permite introducir links
-\usepackage{xcolor} % Paquete para trabajar con colores (fondo de celdas, color del texto...)
+\usepackage[table]{xcolor} % Paquete para trabajar con colores (fondo de celdas, color del texto...)
 \input{config.tex}
 
 
@@ -40,7 +43,7 @@
 \addcontentsline{toc}{chapter}{Índice de contenido} % Añade la referencia al índice de contenido
 \hypertarget{toc}{}
 \tableofcontents
-\newpage
+\newpage{}
 
 % Índice de figuras
 \addcontentsline{toc}{chapter}{Índice de figuras}  % Añade la referencia al índice de contenido
@@ -53,7 +56,11 @@
 
 %% El contenido de la memoria, dividido en capítulos:
 \input{sections/1_intro.tex}
-\input{sections/concl.tex}
+\input{sections/2_diseño.tex}
+\input{sections/3_avl.tex}
+\input{sections/4_casos.tex}
+\input{sections/5_arbol.tex}
+\input{sections/6_misc.tex}
 
 %% Esto incluirá la bibliografía correctamente en nuestro trabajo
 \newpage % En una nueva página
@@ -63,5 +70,6 @@
 \bibliography{biblio} % Indica el archivo que contiene la colección de citas
 
 \nocite{template}
+\nocite{sumup}
 
 \end{document}
