@@ -35,9 +35,9 @@ de ambas variables.
 
 \begin{itemize}
 	\item $R = 0$€
-	\item $R = BI - 1$€
-	\item $R = BI$€
-	\item $R = BI + 1$€
+	\item $R = I - 1$€
+	\item $R = I$€
+	\item $R = I + 1$€
 \end{itemize}
 
 Al igual que en el caso anterior, $R$ es la suma de las retenciones de los empleadores secundarios
@@ -62,10 +62,8 @@ $$
 BI\geq 9000\textup{€} \lor (BI_{s} > 0\textup{€} \land BI_{p} > 0\textup{€})
 $$
 
-...lo que traducido a lenguaje natural se traduce a:
-
-El total de la suma de la base imponible sea mayor o igual a 9000 euros \textbf{\textit{O}}
-(la base imponible del empleador principal sea superior a 0 \textbf{\textit{Y}}
+... es decir: el total de la suma de la base imponible sea mayor o igual a 9000 euros
+\textbf{\textit{O}} (la base imponible del empleador principal sea superior a 0 \textbf{\textit{Y}}
 la suma de las bases imponibles de los empleadores secundarios sea superior a 0).
 
 En lenguaje menos formal, esto significa que la obligatoriedad de la declaración depende de
@@ -88,9 +86,13 @@ independiente al resultado de la decisión.
 		C & F & F & F \\
 		C & C & F & C \\
 		F & C & F & F \\
+		F & C & C & C \\
 		\hline
 	\end{tabular}
 \end{table}
+
+El problema de estos casos es que, aunque se cumpla la condición de MCDC, hay valores de entrada
+que no son lógicamente válidos (por ejemplo, que exista un empleador secundario sin empleador principal).
 
 \section{Técnicas basadas en caminos}
 Para el desarrollo de este ejercicio, no se ha considerado apropiado el uso de técnicas basadas
@@ -112,6 +114,43 @@ teniendo en cuenta el número de empleadores, las deducciones hipotecarias y las
 sin tener en cuenta valores límite ni rangos sino enfocándolo más a la combinación de la
 existencia de ciertos valores.
 
-Esto no se puede considerar como la aplicación de una técnica concreta de combinación de valores,
-pero sí como un estudio de algunas combinaciones posiblemente relevantes que pueden darse en el
-sistema.
+\begin{notebox}
+	Esto no se puede considerar como la aplicación de una técnica concreta de combinación de valores,
+	pero sí como un estudio de algunas combinaciones posiblemente relevantes que pueden darse en el
+	sistema.
+\end{notebox}
+
+Se aplica un sistema \textbf{\textit{Base Choice}} sobre unas variables especiales
+(definidas a continuación) para la obtención de combinaciones interesantes que prueban
+la robustez del sistema. Se utilizan las siguientes variables:
+
+\begin{table}[H]
+	\centering
+	\captionof{figure}{Variables para el sistema \textit{Base Choice}}
+	\begin{tabular}{|c|l|}
+		\hline
+		\rowcolor{gray!50}
+		\textbf{Variable} & \textbf{Descripción} \\
+		\hline
+		\hline
+		$n_{E}$ & Número de empleadores que contribuyen a la base imponible. \\
+		$n_{R}$ & Número de empleadores que contribuyen a las retenciones. \\
+		$P_{h}$ & Valor de los préstamos hipotecarios deducibles. ($L$ es el límite de deducción) \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Los valores que resultan en las entradas del programa son valores de ejemplo que
+permiten traducir este sistema de combinación simplificado a las entradas del
+sistema descrito.
+
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.5\textwidth]{arbol.png}
+	\captionof{figure}{Árbol de decisiones \textit{base choice} con tres variables}
+\end{minipage}
+
+La mayoría de situaciones que resultan de la combinación de estas variables ya están
+cubiertas por las pruebas de valores límite y clases de equivalencia realizadas anteriormente.
+Este estudio demuestra, sin embargo, que se puede llegar a diseñar un sistema más complejo si
+se desea alcanzar una mayor cobertura a costa de un gran número de situaciones ya cubiertas.

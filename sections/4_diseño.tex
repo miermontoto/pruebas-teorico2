@@ -1,31 +1,97 @@
 \chapter{Diseño de pruebas}
 \section{Situaciones de prueba}
-|WIP|
+A continuación se definen las situaciones de prueba que se han de cubrir en el
+sistema, basadas en las clases de equivalencia y técnicas aplicadas en el
+apartado anterior.
+
+\begin{enumerate}[label=\textbf{SP\arabic*.}]
+	\item Clases de equivalencia de entrada
+		\begin{enumerate}[label*=\textbf{\arabic*.}]
+			\item Base imponible ($BI$)
+			\begin{enumerate}[label*=\textbf{\arabic*.}]
+				\item $BI = 0$€
+				\item $BI = 8999$€
+				\item $BI = 9000$€
+				\item $BI = 12449$€
+				\item $BI = 12450$€
+				\item $BI = 20199$€
+				\item $BI = 20200$€
+				\item $BI = 35199$€
+				\item $BI = 35200$€
+				\item $BI = 59999$€
+				\item $BI = 60000$€
+				\item $BI = 299999$€
+				\item $BI = 300000$€
+			\end{enumerate}
+		\item Retenciones ($R$)
+			\begin{enumerate}[label*=\textbf{\arabic*.}]
+				\item $R = 0$€
+				\item $R = I - 1$€
+				\item $R = I$€
+				\item $R = I + 1$€
+			\end{enumerate}
+		\item Préstamos hipotecarios ($P_{H}$)
+			\begin{enumerate}[label*=\textbf{\arabic*.}]
+				\item $P_{H} = 0$€
+				\item $P_{H} = 60266$€
+				\item $P_{H} = 60267$€
+			\end{enumerate}
+		\end{enumerate}
+	\item Otras situaciones
+		\begin{enumerate}[label*=\textbf{\arabic*.}]
+			\item MCDC
+				\begin{enumerate}[label*=\textbf{\arabic*.}]
+					\item $BI\geq 9000\textit{\texteuro}, BI_{s}=0\textit{\texteuro}, BI_{p}>0\textit{\texteuro}$
+					\item $BI\geq 9000\textit{\texteuro}, BI_{s}=0\textit{\texteuro}, BI_{p}=0\textit{\texteuro}$ \textcolor{red}{(Imposible)}
+					\item $BI\geq 9000\textit{\texteuro}, BI_{s}>0\textit{\texteuro}, BI_{p}=0\textit{\texteuro}$ \textcolor{red}{(Inválido)}
+					\item $BI<9000\textit{\texteuro}, BI_{s}>0\textit{\texteuro}, BI_{p}=0\textit{\texteuro}$ \textcolor{red}{(Inválido)}
+					\item $BI<9000\textit{\texteuro}, BI_{s}>0\textit{\texteuro}, BI_{p}>0\textit{\texteuro}$
+				\end{enumerate}
+			\item Combinatoria
+				\begin{enumerate}[label*=\textbf{\arabic*.}]
+					\item $n_{E}=1, n_{R}=1, P_{H}=0\textit{\texteuro}$
+					\item $n_{E}=1, n_{R}=0, P_{H}=0\textit{\texteuro}$
+					\item $n_{E}=1, n_{R}=2, P_{H}=0\textit{\texteuro}$ \textcolor{red}{(Inválido)}
+					\item $n_{E}=1, n_{R}=1, P_{H}=60266\textit{\texteuro}$
+					\item $n_{E}=1, n_{R}=1, P_{H}=60267\textit{\texteuro}$
+					\item $n_{E}=0, n_{R}=1, P_{H}=0\textit{\texteuro}$ \textcolor{red}{(Inválido)}
+					\item $n_{E}=2, n_{R}=1, P_{H}=0\textit{\texteuro}$
+				\end{enumerate}
+			\item Obligatoriedad
+				\begin{enumerate}[label*=\textbf{\arabic*.}]
+					\item Obligatorio
+					\item No obligatorio
+				\end{enumerate}
+		\end{enumerate}
+\end{enumerate}
 
 \section{Casos de prueba}
 \begin{table}[H]
-	\centering
 	\begin{tabular}{l|c c c c c|c c|r r}
 		\hline
 		\multirow{2}*{\bf{ID}} & \multicolumn{5}{c|}{\textbf{Entradas}} & \multicolumn{2}{c|}{\bf{Totales}} & \multicolumn{2}{c}{\bf{Salidas}} \\
 		\cline{2-10}
-		& $BI_p$ & $BI_s$ & $R_p$ & $R_o$ & $P_{H}$ & $BI$ & $R$ & ¿Oblig.? & S. esperada \\
+		& $BI_p$ & $BI_s$ & $R_p$ & $R_o$ & $P_{H}$ & $BI$ & $R$ & Oblig. & Cálculo \\
 		\hline
 		\hline
-		CP1  & 0€      & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & No & TBA \\
-		CP2  & 8999€   & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & No & TBA \\
-		CP3  & 8999€   & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP4  & 9000€   & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP5  & 12449€  & 0€ & 0€ & $I-1$€ & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP6  & 12450€  & 0€ & 0€ & $I+1$€ & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP7  & 20199€  & 0€ & 0€ & $I$€   & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP8  & 20200€  & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP9  & 35199€  & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP10 & 35200€  & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP11 & 59999€  & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP12 & 60000€  & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP13 & 299999€ & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & Sí & TBA \\
-		CP14 & 300000€ & 0€ & 0€ & 0€     & 0€ & 0€ & 0€ & Sí & TBA \\
+		CP1  & 0€      & 0€     & 0€     & 0€ & 0€     & 0€      & 0€     & No & $0,00\textit{\texteuro}$ \\
+		CP2  & 8999€   & 0€     & 0€     & 0€ & 0€     & 8999€   & 0€     & No & $7289,19\textit{\texteuro}$ \\
+		CP3  & 8998€   & 1€     & 500€   & 0€ & 0€     & 8999€   & 500€   & Sí & $6789,19\textit{\texteuro}$ \\
+		CP4  & 9000€   & 0€     & 0€     & 0€ & 0€     & 9000€   & 0€     & Sí & $7290,00\textit{\texteuro}$ \\
+		CP5  & 12449€  & 0€     & $I-1$€ & 0€ & 0€     & 12449€  & $I-1$€ & Sí & $1043,79\textit{\texteuro}$ \\
+		CP6  & 12450€  & 0€     & $I$€   & 1€ & 0€     & 12450€  & $I+1$€ & Sí & $1043,45\textit{\texteuro}$ \\
+		CP7  & 20199€  & 0€     & $I$€   & 0€ & 0€     & 20199€  & $I$€   & Sí & $15973,74\textit{\texteuro}$ \\
+		CP8  & 20200€  & 500€   & 0€     & 0€ & 500€   & 20200€  & 500€   & Sí & $15474,50\textit{\texteuro}$ \\
+		CP9  & 35199€  & 0€     & 1500€  & 0€ & 60266€ & 35199€  & 1500€  & Sí & $24973,80\textit{\texteuro}$ \\
+		CP10 & 35200€  & 0€     & 1500€  & 0€ & 60267€ & 35200€  & 1500€  & Sí & $24974,50\textit{\texteuro}$ \\
+		CP11 & 59999€  & 0€     & 0€     & 0€ & 0€     & 59999€  & 0€     & Sí & $42097,87\textit{\texteuro}$ \\
+		CP12 & 60000€  & 0€     & 0€     & 0€ & 0€     & 60000€  & 0€     & Sí & $42098,50\textit{\texteuro}$ \\
+		CP13 & 299999€ & 0€     & 0€     & 0€ & 0€     & 299999€ & 0€     & Sí & $174097,95\textit{\texteuro}$ \\
+		CP14 & 300000€ & 0€     & 0€     & 0€ & 0€     & 300000€ & 0€     & Sí & $174098,50\textit{\texteuro}$ \\
+		CP15 & 0€      & 0€     & 50000€ & 0€ & 0€     & 0€      & 50000€ & \multicolumn{2}{c}{Error\cellcolor{red!25}} \\
+		CP16 & 0€      & 10000€ & 0€     & 0€ & 0€     & 0€      & 10000€ & \multicolumn{2}{c}{Error\cellcolor{red!25}} \\
+		CP17 & 0€      & 8000€  & 0€     & 0€ & 0€     & 0€      & 8000€  & \multicolumn{2}{c}{Error\cellcolor{red!25}} \\
+		CP18 & 10000€  & 500€   & 500€   & 0€ & 10000€ & 1000€   & 0€     & \multicolumn{2}{c}{Error\cellcolor{red!25}} \\
 		\hline
 	\end{tabular}
 	\captionof{figure}{Casos de prueba iniciales propuestos para el sistema}
@@ -40,7 +106,7 @@ ejemplos de validación de datos:
 		\hline
 		\multirow{2}*{\bf{ID}} & \multicolumn{5}{c|}{\textbf{Entradas}} & \multicolumn{2}{c|}{\bf{Totales}} & \multicolumn{2}{c}{\bf{Salidas}} \\
 		\cline{2-10}
-		& $BI_p$ & $BI_s$ & $R_p$ & $R_o$ & $P_{H}$ & $BI$ & $R$ & ¿Oblig.? & S. esperada \\
+		& $BI_p$ & $BI_s$ & $R_p$ & $R_o$ & $P_{H}$ & $BI$ & $R$ & Oblig. & Cálculo \\
 		\hline
 		\hline
 		CP91 & -1€   & 0€  & 0€    & 0€  & 0€  & -1€   & 0€    & \multicolumn{2}{c}{Error\cellcolor{red!25}} \\
@@ -61,6 +127,7 @@ Para facilitar su visualización y cumplir con los requisitos de la asignatura, 
 la tabla utilizan los identificadores únicos que facilitan su trazabilidad.
 
 \begin{minipage}{\linewidth}
-	\includegraphics[width=\textwidth]{trazabilidad.png}
+	\centering
+	\includegraphics[width=0.5\textwidth]{trazabilidad.png}
 	\captionof{figure}{Trazabilidad del sistema}
 \end{minipage}
